@@ -50,5 +50,5 @@ async function signin(data) {
 
 module.exports={
     create,
-    signin
+     signin,
 }

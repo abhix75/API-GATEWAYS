@@ -23,5 +23,5 @@ function ValidateAuthRequest(req,res,next)
 }
 
 module.exports={
-    ValidateAuthRequest
+    ValidateAuthRequest,
 }
