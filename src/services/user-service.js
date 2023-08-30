@@ -77,8 +77,23 @@ async function isAuthenticated(token){
     }
 }
 
+async function getUsers(id)
+{
+    try {
+        const user = await userRepository.get(id);
+        return user;
+    } catch (error) {
+        if(error.statusCodes==StatusCodes.NOT_FOUND)
+        {
+            throw new AppError("THE AEROPLANE YTHAT YOU HAVE REQUESTED IS NOT PRESENT",error.statusCodes)
+        }
+       throw new AppError("Not Able to get  the Airplane objects",StatusCodes.INTERNAL_SERVER_ERROR); 
+    }
+}
+
 module.exports={
     create,
      signin,
-     isAuthenticated
+     isAuthenticated,
+     getUsers
 }

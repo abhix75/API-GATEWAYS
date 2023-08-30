@@ -31,7 +31,8 @@ module.exports = (sequelize, DataTypes) => {
       validate:{
         len:[3,50]
       }
-    } 
+    } ,
+
   }, {
     sequelize,
     modelName: 'User',

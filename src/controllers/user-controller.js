@@ -46,8 +46,26 @@ async function signup(req,res)
      }
  }
 
+ async function getUser(req,res)
+{
+    try {
+        const User = await UserService.getUsers(req.params.id);
+        SuccessResponse.data=User;
+        return res 
+                 .status(StatusCodes.OK)
+                 .json(SuccessResponse)
+                 
+    } catch (error) {
+        ErrorResponse.error=error;
+        return res 
+                 .status(error.statusCodes)
+                 .json(ErrorResponse)
+    }
+}
+
 
  module.exports={
     signup,
-    signin
+    signin,
+    getUser
  }

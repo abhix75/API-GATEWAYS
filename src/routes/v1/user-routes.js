@@ -12,5 +12,8 @@ const router = express.Router();
           router.post('/signin',
                           AuthRequestMiddleWares.ValidateAuthRequest,
                           UserController.signin);
+
+          router.get('/:id',
+                           UserController.getUser);    
                 
 module.exports =router; 
