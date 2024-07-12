@@ -11,6 +11,7 @@ async function signup(req,res)
 {
      try {
         const user = await UserService.create({
+            name:req.body.name,
             email: req.body.email,
             password: req.body.password
         });
@@ -46,22 +47,22 @@ async function signup(req,res)
      }
  }
 
-//  async function getUser(req,res)
-// {
-//     try {
-//         const User = await UserService.getUsers(req.params.id);
-//         SuccessResponse.data=User;
-//         return res 
-//                  .status(StatusCodes.OK)
-//                  .json(SuccessResponse)
+ async function getUser(req,res)
+{
+    try {
+        const User = await UserService.getUsers(req.params.id);
+        SuccessResponse.data=User;
+        return res 
+                 .status(StatusCodes.OK)
+                 .json(SuccessResponse)
                  
-//     } catch (error) {
-//         ErrorResponse.error=error;
-//         return res 
-//                  .status(error.statusCodes)
-//                  .json(ErrorResponse)
-//     }
-// }
+    } catch (error) {
+        ErrorResponse.error=error;
+        return res 
+                 .status(error.statusCodes)
+                 .json(ErrorResponse)
+    }
+}
 async function addRoleToUser(req, res) {
     try {
         const user = await UserService.addRoletoUser({
@@ -88,5 +89,6 @@ async function addRoleToUser(req, res) {
  module.exports={
     signup,
     signin,
-    addRoleToUser
+    addRoleToUser,
+    getUser
  }

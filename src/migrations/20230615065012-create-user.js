@@ -9,6 +9,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      name:{
+        type: Sequelize.STRING,
+        allowNull:false,
+        unique:true,
+          validate: {
+            isAlpha:true
+          }
+      },
       email: {
         type: Sequelize.STRING,
         allowNull: false,

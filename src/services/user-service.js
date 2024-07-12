@@ -56,7 +56,7 @@ async function signin(data) {
 async function isAuthenticated(token){
     try {
         if(!token){
-            throw new AppError('Missing GWT token',StatusCodes.BAD_REQUEST);
+            throw new AppError('Missing JWT token',StatusCodes.BAD_REQUEST);
         }
         const response = Auth.verifyToken(token);
         const user = await userRepository.get(response.id);
@@ -77,19 +77,19 @@ async function isAuthenticated(token){
     }
 }
 
-// async function getUsers(id)
-// {
-//     try {
-//         const user = await userRepository.get(id);
-//         return user;
-//     } catch (error) {
-//         if(error.statusCodes==StatusCodes.NOT_FOUND)
-//         {
-//             throw new AppError("THE AEROPLANE YTHAT YOU HAVE REQUESTED IS NOT PRESENT",error.statusCodes)
-//         }
-//        throw new AppError("Not Able to get  the Airplane objects",StatusCodes.INTERNAL_SERVER_ERROR); 
-//     }
-// }
+async function getUsers(id)
+{
+    try {
+        const user = await userRepository.get(id);
+        return user;
+    } catch (error) {
+        if(error.statusCodes==StatusCodes.NOT_FOUND)
+        {
+            throw new AppError("THE User YTHAT YOU HAVE REQUESTED IS NOT PRESENT",error.statusCodes)
+        }
+       throw new AppError("Not Able to get  the Airplane objects",StatusCodes.INTERNAL_SERVER_ERROR); 
+    }
+}
 
 async function addRoletoUser(data) {
     try {
@@ -134,5 +134,6 @@ module.exports={
      isAuthenticated,
      addRoletoUser,
      isAdmin
-     
+     ,
+     getUsers
 }

@@ -13,8 +13,8 @@ const router = express.Router();
                           AuthRequestMiddleWares.ValidateAuthRequest,
                           UserController.signin);
 
-        //   router.get('/:id',
-        //                    UserController.getUser);
+          router.get('/:id',
+                           UserController.getUser);
           
           router.post('/role',
                              AuthRequestMiddleWares.checkAuth, 
